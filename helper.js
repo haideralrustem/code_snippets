@@ -228,10 +228,27 @@ systemctl start emperor.uwsgi.service
 systemctl status emperor.uwsgi.service
 
 
+sudo su
 /etc/init.d/nginx restart
 systemctl stop emperor.uwsgi.service
 systemctl start emperor.uwsgi.service
-
+source env/bin/activate
 uwsgi --emperor /home/ubuntu/env/vassals --uid www-data --gid www-data
 
 
+
+
+# solving custom DNS "wlecome to NGINX" message :
+# solution -> remove default file from both /etc/nginx/sites-enabled/ and 
+# /etc/nginx/sites-available/
+
+
+
+
+// Adding SSL for HTTPS
+
+sudo apt-get install snapd 
+
+sudo snap install --classic certbot
+sudo ln -s /snap/bimn/certbot /usr/bin/certbot
+sudo certbot --nginx

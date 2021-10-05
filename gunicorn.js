@@ -138,3 +138,15 @@ ExecStart=/home/ubuntu/env/bin/uwsgi --emperor /home/ubuntu/env/vassals --uid ww
 
 WantedBy=multi-user.target
 
+
+
+
+
+
+//---------------------- nginx default conf ------------------
+
+
+
+
+
+
