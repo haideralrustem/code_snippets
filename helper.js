@@ -229,10 +229,10 @@ systemctl status emperor.uwsgi.service
 
 
 sudo su
-/etc/init.d/nginx restart
-systemctl stop emperor.uwsgi.service
-systemctl start emperor.uwsgi.service
-source env/bin/activate
+sudo /etc/init.d/nginx restart
+sudo systemctl stop emperor.uwsgi.service
+sudo systemctl start emperor.uwsgi.service
+source /home/ubuntu/env/bin/activate
 uwsgi --emperor /home/ubuntu/env/vassals --uid www-data --gid www-data
 
 
@@ -252,3 +252,10 @@ sudo apt-get install snapd
 sudo snap install --classic certbot
 sudo ln -s /snap/bimn/certbot /usr/bin/certbot
 sudo certbot --nginx
+
+
+
+//Status Check Fail for AWS Instance:
+-> Create alarms that stop, terminate, reboot, or recover an instance.
+
+
