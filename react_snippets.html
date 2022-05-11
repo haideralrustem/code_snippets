@@ -1,0 +1,230 @@
+
+
+// conditional rendering
+
+{ someBooleanTest? <Modal/> : null }
+
+
+
+// state 
+
+function Todo(props){
+	const [ stateValue,  setStateValue] =  useState(someValue);
+
+	function someFunction() {
+		setStateValue(someValue)
+	}
+}
+
+
+
+
+// execute functions through props
+
+function Modal(props){
+	function someThing(){
+		props.someFunctionProp();
+	}
+}
+
+
+
+
+
+// ---------- Routing --------------
+
+import { BrowserRouter } from 'react-router-dom'
+<BrowserRouter> 
+	<App/>
+</BrowserRouter>
+
+
+import { Route, Switch }  from 'react-router-dom'
+
+function App(){
+	// path is localhost:3000/ plus your path
+	<Router>
+		<NavBar/>
+
+		<Switch>
+			<Route path='/favorites' exact>
+				<FavoritesPage />
+			</Route>
+
+			<Route path='/new-meetup' exact>
+				<NewMeetupPage />
+			</Route>
+		</Switch>
+	</Router>
+
+
+}
+
+
+
+// ------  Routing Links --------------
+
+import { Link } from 'react-router-dom'
+
+function NavBar(){
+
+	return(
+	<li>
+		<Link to='/new-meetup'>some link</Link>
+	</li>
+	)
+}
+
+
+
+
+//----- Routing with render to pass match object/ dynamic routing / url parameters ----------
+
+<Route path="/event_detail/:id" 
+                    render={( {match} ) => 
+                   
+                    <EventDetail m={JSON.stringify(match)}
+                    			 urlEventId={match.params.id}>
+                    			 	
+                    </EventDetail> }
+></Route>
+
+
+
+
+
+
+// ----------- CSS Modules ------------------
+
+import classes from './yourCssFile.module.css'
+
+<header className={classes.header}>
+
+
+
+
+
+//------------ Rendering data / iteration / looping data / binding --------
+
+const DUMMY_DATA = [ {...} ,  {...} ,  {...} ]
+
+return (
+	{DUMMY_DATA.map( (element)=> {
+						return <li key={element.id}> {element.title} </li>
+						} 
+				   )
+	}
+	
+)
+
+
+
+//--------- reusable rendering ----------
+
+function ReusableDataRenderer( props ) {
+	return (
+		<li> {props.title} </li>
+	) 
+}
+
+return (DUMMY_DATA.map( (element)=> {
+						 <ReusableDataRenderer 
+						 key={element.id}						
+						 title={element.title} /> 
+						} 
+				   )
+	})
+
+
+
+
+
+
+
+//------------- Forms / api send / http request / backend ----------------------
+
+import { useRef, useState, useEffect } from 'react'
+
+
+function MyForm() {
+	const [isLoading, setIsLoading ] = useState(true);
+	const [ receivedData, setReceivedData ] = useState([])
+	const history = useHistory();
+
+	const titleInputRef = useRef();
+
+	function submitHandler(event) {
+		event.preventDefault();
+		const enteredTitle = titleInputRef.current.value ; 
+
+		fetch('https://someurl.com', 
+				{
+					method: 'POST',
+					body: JSON.stringfy(enteredTitle),
+					headers: { 'Content-Type': 'application/json'}
+				}).then( 
+				         () => { 
+
+				         	history.replace('/') 
+				         } 
+					);
+	}	
+
+
+	function fetchingData() {
+		fetch(
+			'https://.....'
+		).then( response => {
+			return response.json();
+		}).then( data => {
+			setIsLoading(false)
+
+		});
+
+
+
+	}
+
+	if (isLoading) {
+		return 
+	}
+
+	return (
+		<form onSubmit={submitHandler}>
+			<label htmlFor='title'></label>
+			<input type='text' required  id='title' ref={titleInputRef}></input>
+
+			<button>Submit</button>
+		</form>
+
+		<ShowResults receivedData={receivedData}>
+		</ShowResults>
+	)
+}
+
+
+
+
+
+<!-- ---------------------------------------------------- -->
+
+
+
+// Setting timeout / delay
+
+useEffect(() => {
+        const timer = setTimeout(() => {
+          console.log('Timeout called!');
+                    
+        }, 1000);
+        return () => {clearTimeout(timer);
+                      console.log('cleared timeout!!! ');  }
+      }, []);
+
+
+
+ <!-- -------------------------------------- -->
+
+ 
+
+

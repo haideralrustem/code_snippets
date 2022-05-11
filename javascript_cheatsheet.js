@@ -53,6 +53,11 @@ window.onscroll = function(){
 
 
 
+// scroll left - scroll right - scroll slider
+document.getElementById(elementId: DOMString).scrollLeft += 180
+document.getElementById(elementId: DOMString).scrollLeft -= 180
+
+
 // change css - change style
 document.elm.style.border = "3px solid #FF0000"
 
@@ -62,3 +67,26 @@ document.elm.style.border = "3px solid #FF0000"
 window.addEventListener('resize', function(event) {});
 // windo media queries - window width 
 window.innerWidth >= 320 && window.innerWidth < 400;
+
+
+
+
+// append text dynamically / programatically
+let first_item = document.createElement('p')
+        let txt = document.createTextNode("name suggestion 1");
+        first_item.appendChild(txt);
+
+
+
+
+
+// check object has own property / has property
+object1.hasOwnProperty('property1');
+
+
+
+// remove elements
+const myNode = document.getElementById("foo");
+  while (myNode.firstChild) {
+    myNode.removeChild(myNode.lastChild);
+  }
